@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>MongoDB/Spring Boot Vehicle Board</title>
+		<style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-spacing: 0px;
+			}
+			th, td {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Description</th>
+					<th>Year</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="vehicle : ${carList}">
+					<td th:text="${vehicle.make}"></td>
+					<td th:text="${vehicle.model}"></td>
+					<td th:text="${vehicle.description}"></td>
+					<td th:text="${vehicle.year}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<h2>Add Vehicle</h2>
+		<form action="/addCar" method="POST">
+			Make <input type="text" id="make" name="make" /><br />
+			Model <input type="text" id="model" name="model" /><br />
+			Year <input type="text" id="year" name="year" /><br />
+			<br></br>
+			Description <textarea rows="5" cols="70" id="description" name="description" /><br />
+			<br></br>
+			<input type="submit" />
+		</form>
+		<h2>Search for Vehicles</h2>
+		<form action="/search" method="POST">
+			<input type="text" name="search" id="search" th:value="${search}" />
+			<input type="submit" value="Search" />
+		</form>
+	</body>
+</html>
